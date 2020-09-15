@@ -1,0 +1,26 @@
+pipeline {
+	agent any				
+	stages {				
+		// 第一步
+		stage('拉取代码并编译'){
+			when {
+                environment name: 'IF_BUILD', value: 'yes'
+            }
+			steps {
+				println "*****************************************************开始拉去代码*****************************************************" 
+				sh 'git pull'
+				println "*****************************************************开始编译代码*****************************************************" 
+				sh 'npm install && npm run build'
+			}
+		}
+			 
+		// 第二步
+		stage('部署'){
+			steps {
+				println '***************************************开始部署代码***************************************'
+				sh 'scp -rp /data/jenkins/workspace/rel_front_h5 172.31.0.176:/tmp/test'
+				sh 'sudo sshpass ssh centos@172.31.0.176 "sudo chown www:www -R /tmp/test/rel_front_h5 && ls -l /tmp/test/rel_front_h5/"'
+			}
+		}						
+	}				
+}
