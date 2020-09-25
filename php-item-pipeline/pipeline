@@ -4,8 +4,8 @@ pipeline {
 		// 第一步
 		stage('拉取代码并编译'){
 			when {
-                environment name: 'IF_BUILD', value: 'yes'
-            }
+                             environment name: 'IF_BUILD', value: 'yes'
+                             }
 			steps {
 				println "*****************************************************开始拉去代码*****************************************************" 
 				sh 'git pull'
