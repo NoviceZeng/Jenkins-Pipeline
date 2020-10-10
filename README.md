@@ -1,5 +1,5 @@
 # /root/pipeline-script/php-pipeline
-##pipeline脚本的注意事项
+## pipeline脚本的注意事项
 > * 声明式脚本中通过script使用groovy语法，需要调用定义的环境变量，需要加env，例如本文中，if (env.Branch == 'uat')，测试在scrip中，不能通过echo打印定义的环境变量
 > * scp拷贝front目录下的所有文件到远程主机的work目录下： scp -rp /front/* 1.1.1.1:/data/work/；拷贝front文件，则scp -rp /front 1.1.1.1:/data/work/
 > * 修改Jenkins的job名字，对应job在workspace下的代码路径也发生改变，所以Jenkinsfile中如有引用路径，需要做出改变
