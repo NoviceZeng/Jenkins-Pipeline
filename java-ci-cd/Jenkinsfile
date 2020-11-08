@@ -14,7 +14,7 @@ def git_auth = "da0d4cd1-272c-4e20-9eec-f928fb2175df"
 def k8s_auth = "80e66a86-d189-4555-b1ef-054285031b7a"
 
 //首先要构建Jenkins-slave镜像,镜像中安装maven curl git等环境
-//Kubernetes插件：Jenkins在Kubernetes集群中运行动态代理 插件介绍：https://github.com/jenkinsci/kubernetes-plugin
+//Kubernetes插件：在k8s中运行动态代理的Jenkins插件 插件介绍：https://github.com/jenkinsci/kubernetes-plugin
 podTemplate(label: 'jenkins-slave', cloud: 'kubernetes', containers: [
     containerTemplate(
         name: 'jnlp',
