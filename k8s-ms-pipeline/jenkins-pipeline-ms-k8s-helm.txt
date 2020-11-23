@@ -115,6 +115,7 @@ spec:
                         service_port=\${service#*:}
                         image=${registry}/${project}/\${service_name}
                         tag=${BUILD_NUMBER}
+                        #service.targetPort必须和Dockfile中EXPOSE的port、以及代码中配置的port保持一致，此处Service.Port使用helm value.yaml中配置的默认值，ingress根据域名service name区分不同服务
                         helm_args="\${service_name} --set image.repository=\${image} --set image.tag=\${tag} --set replicaCount=${replicaCount} --set imagePullSecrets[0].name=${image_pull_secret} --set service.targetPort=\${service_port} myrepo/${Template}"
                         
                         # 判断是否为新部署
